@@ -1,3 +1,6 @@
+#
+
+
 Colorset 3 fg #aaaaaa, bg #333333 90, sh #d4d4d4, hi #d4d4d4
 Colorset 4 RootTransparent, fg #aaaaaa, bg #333333, sh Black, hi #202020, Tint Black 60, bgTint Black 60
 Colorset 6 fg #aaaaaa, bg #000000, sh Black, hi #202020, Tint White 60
