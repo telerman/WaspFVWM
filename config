@@ -1,0 +1,246 @@
+Colorset 3 fg #aaaaaa, bg #333333 90, sh #d4d4d4, hi #d4d4d4
+Colorset 4 RootTransparent, fg #aaaaaa, bg #333333, sh Black, hi #202020, Tint Black 60, bgTint Black 60
+Colorset 6 fg #aaaaaa, bg #000000, sh Black, hi #202020, Tint White 60
+Colorset 7 RootTransparent, fg #00ff00, bg #777777
+Colorset 8 bg #d5d5d5
+Colorset 9 bg #4a4a4a
+Colorset 10 bg #cccccc, fg   #e1e1e1, fgsh #666666
+Colorset 11 bg #cccccc, fg   #101010, fgsh #000000
+Colorset 12 RootTransparent, fg #02e8ff, sh Black, hi #202070, Tint Black 50, bgTint Black 50
+Colorset 13 RootTransparent, Tint black 70, bgTint black 50, fg #aaaaaa
+
+ImagePath $HOME/.fvwm/backgrounds/:$HOME/.fvwm/icons
+
+WindowFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
+IconFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
+DefaultFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
+MenuStyle * Font "xft:Conthrax:Medium:size=12:encoding=iso10646-1:antialias=true"
+
+
+Style FvwmWinList	WindowListSkip
+Style FvwmPager		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style FvwmTaskBar	!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style radio		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+
+ClickTime        250
+OpaqueMoveSize   -1
+
+MenuStyle * MenuColorset 13
+MenuStyle * ActiveColorset 12
+
+MenuStyle * SeparatorsLong, TrianglesSolid
+MenuStyle * BorderWidth 2
+MenuStyle * ActiveFore, Hilight3DOff
+
+MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle * PopupOffset 2 100
+
+MenuStyle * BorderWidth 1, HilightBack black, Hilight3DThickness 2
+MenuStyle * SeparatorsShort, Animation, MouseWheel
+
+MenuStyle * VerticalTitleSpacing +5
+MenuStyle * VerticalItemSpacing +5
+MenuStyle * TrianglesUseFore
+
+DesktopSize 10x1
+EdgeThickness 1
+EdgeResistance -1
+*FvwmPager: Geometry 600x40-0+0
+*FvwmPager: Colorset * 4
+*FvwmPager: BalloonColorset * 4
+*FvwmPager: HilightColorset * 4
+*FvwmPager: WindowColorsets 7 4
+*FvwmPager: Balloons All
+*FvwmPager: Window3DBorders
+*FvwmPager: MiniIcons
+*FvwmPager: Font	None
+*FvwmPager: BalloonFont "xft:Terminus:pixelsize=14:encoding=iso10646-1:minspace=true:antialias=True"
+*FvwmPager: BalloonYOffset      +20
+*FvwmPager: BalloonBorderWidth  1
+
+TitleStyle Height 22
+TitleStyle LeftJustified
+TitleStyle Active  Colorset 12
+TitleStyle Inactive Colorset 13
+TitleStyle -- flat
+
+BorderStyle Inactive Colorset 8 -- Noinset
+BorderStyle Active Colorset 9
+ButtonStyle All Active -- flat
+ButtonStyle All Inactive -- flat
+
+Key XF86MonBrightnessDown A A exec xbacklight -dec 10
+Key XF86MonBrightnessUp   A A exec xbacklight -inc 10
+Key XF86AudioMute         A A exec /usr/bin/amixer set Master toggle
+Key XF86AudioLowerVolume  A A exec /usr/bin/amixer set Master 2dB-
+Key XF86AudioRaiseVolume  A A exec /usr/bin/amixer set Master 2dB+
+Key XF86ScreenSaver	  A A exec xscreensaver-command -lock
+Key space                 A M Menu RootMenu c c
+Key space                 A SM Menu WindowMenu button2 +0+1p +100+1p
+Key o	A	M	Move
+Key s	A	M	Resize
+Key r	A	M	Raise
+Key l	A	M	Lower
+Key h	A	M	WindowShade
+Key m	A	M	RaiseMaximize
+Key n	A	M	Close
+Key Right A MC Scroll  100 0 # Ctrl+Alt+Right - Go one page Right                                                                     
+Key Left  A MC Scroll -100 0 # Ctrl+Alt+Left  - Go one page Left                                                                      
+Key Up    A MC Scroll  0 -100 # Ctrl+Alt+Right - Go one page Right                                                                    
+Key Down  A MC Scroll  0 100 # Ctrl+Alt+Left  - Go one page Left
+
+Mouse 0 4	A	RaiseMaximize
+Mouse 0 2	A	Close
+Mouse 0 6	A	Thumbnail
+Mouse 0 6	A	Iconify
+
+Mouse 1 R	A	Menu RootMenu Nop
+Mouse 1 S	A	Function MoveOrRaise
+Mouse 1 F	A	Resize
+Mouse 1 I	A	Function IconFunc
+Mouse 1 T 	A 	Move
+
+Mouse 2 R	A	Refresh
+Mouse 2	FST	A	Menu WindowMenu Nop
+Mouse 2 I	A	Menu WindowMenu Nop
+Mouse 2 T	A	Menu WindowMenu Nop
+
+Mouse 3 - A WindowShade North # mouse 1 + Shift on top border
+Mouse 3 [ A WindowShade West  # mouse 1 + Shift on left border
+Mouse 3 ] A WindowShade E     # mouse 1 + Shift on right border
+Mouse 3 _ A WindowShade S     # mouse 1 + Shift on bottom border
+Mouse 3	I	A	Move
+Mouse 3 R	A	WindowList
+Mouse 3 T	A	Lower
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Exec xsetroot -fg \#002222 -bg \#00010e -mod 16 20
++ I Exec killall -9 conky; sleep 2 && conky
++ I Exec xrdb load ~/.Xresources
++ I Exec xscreensaver
++ I Module FvwmPager
+
+AddToFunc ExitFunction
++ I Exec killall -9 FvwmPager
++ I Exec killall -9 xscreensaver
++ I Exec killall -9 conky
+
+AddToFunc MoveNoRaise
++ M Move
++ D WindowShade toggle
+
+AddToFunc MoveOrRaise
++ C Raise
++ M Raise
++ M Move
++ D Current (Shaded) Raise
++ D WindowShade toggle
+
+AddToFunc MoveOrLower
++ C Lower
++ M Lower
++ M Move
+
+AddToFunc ResizeOrRaise
++ C Raise
++ M Raise
++ M Resize
++ D Current (Shaded) Raise
++ D WindowShade toggle
+
+AddToFunc MoveOrIconify
++ I Raise
++ M Raise
++ M Move
++ D Iconify on
+
+AddToFunc IconFunc
++ C Iconify off
++ M Raise
++ M Move
+
+AddToFunc RaiseMaximize
++ I Raise
++ I Maximize toggle
+
+AddToMenu WindowMenu
++ "MoveToPage"		Popup PagerNavigation
++ "ID"			Module FvwmIdent
++ ""			Nop
++ "move         Alt+o"	Move
++ "resize       Alt+s"	Resize
++ "raise        Alt+r"	Raise
++ "lower        Alt+l"	Lower
++ "iconify"		Iconify
++ "(un)shade"		WindowShade
++ "(un)stick"		Stick
++ "bottom right"	Move -0 -0
++ "left corner 10 10"	Move +-10 +-10
++ "center"     	  	Move 50-50w 50-50w
++ "(un)maximize Alt+m"	Maximize
++ "close"		Close
++ "destroy"		Destroy
+
+AddToMenu Module-Popup	"FvwmModules" Title
++ "Console"		Module FvwmConsole
++ "Identify"		Module FvwmIdent
++ "Talk"  		Module FvwmTalk
++ "Com"			Module FvwmCommandS
++ "Button-Bar"		Module FvwmButtons
++ "Pager"		Module FvwmPager 0 0
++ "FvwmTaskBar"		Module FvwmTaskBar
++ "Pager (2 desks)" 	Module FvwmPager 0 1
++ "WinList"		Module FvwmWinList
++ "Banner"		Module FvwmBanner
++ "ScrollBar"     	Module FvwmScroll 50 50
++ "Background"		Module FvwmBacker
++ "AutoRaise"     	Module FvwmAuto 200 Raise Nop
++ "Stop AutoRaise" 	KillModule
++ "IconBox"		Module FvwmIconBox
++ "IconMan"       	Module FvwmIconMan
++ "Form - Rlogin"    	Module FvwmForm Rlogin
++ "Form - MyFvwmTalk"	Module FvwmForm MyFvwmTalk
++ "Form - QuitVerify"	Module FvwmForm QuitVerify
+
+AddToMenu FVWM
++ "restart"		Restart
++ "lock screen"		exec xscreensaver-command -lock
+ + "background" 	Popup BGMenu
++ "winlist"		Module  FvwmWinList
++ "refresh"		Refresh
++ "modules"		PopUp Module-Popup
++ ""			Nop
++ "quit"		Quit
+
+AddToMenu RootMenu "WaspFVWM"
++ DynamicPopupAction Function MakeBGMenu
++ "xterm"		exec xterm
++ "emacs"		exec emacs
++ "idle"		exec idle
++ "applications"	Popup Applications
++ "preferences"		Popup Preferences
++ ""			Nop
++ "fvwm"		Popup FVWM
+
+AddToMenu RootMenu "XDG Menus" Popup FvwmMenu
+PipeRead 'fvwm-menu-desktop --enable-mini-icons --theme Mist'
+
+Style * DecorateTransient
+Style * CascadePlacement
+Style * TitleFormat %n (%t)
+Style *	Icon konsole.png, IconOverride, EWMHMiniIconOverride
+Style * HilightColorset 12
+Style * Colorset 4
+Style * WindowShadeShrinks, WindowShadeSteps 100, WindowShadeLazy
+
+AddToDecor Default
+ + ButtonStyle 1 Vector 4 50x25@1 85x75@0 15x75@0 50x25@1
+ + ButtonStyle 1 Colorset 7
+
+Mouse 0 1 N WindowShade
+
+AddToFunc RestartFunction I Module FvwmBacker
+AddToFunc InitFunction I Module FvwmBacker
+
+BorderStyle InActive -- NoInset
