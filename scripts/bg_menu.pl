@@ -10,7 +10,7 @@ print "AddToMenu BGMenu\n";
 print "+ DynamicPopupAction Function MakeBGMenu\n";
 
 print " + \"None\"\texec rm $background_dir/default; xsetroot -fg \\#002222 -bg \\#00010e -mod 16 20\n";
-print " + \"cycle\"\texec $ENV{HOME}/.fvwm/scripts/bg_cycle&";
+print " + \"cycle\"\texec $ENV{HOME}/.fvwm/scripts/bg_cycle&\n";
     
 foreach (@my_file_list){
     next if (m/icon/g);
