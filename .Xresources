@@ -1,0 +1,95 @@
+XTerm*geometry:		160x25+5+33
+XTerm*background:	#000900
+XTerm*foreground:	#8ade02
+
+XTerm*font:		-xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*font1:		-xos4-terminus-medium-r-*-*-10-*-*-*-*-*-iso10646-*
+XTerm*font2:		-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+XTerm*font3:		-xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*font4:		-xos4-terminus-medium-r-*-*-20-*-*-*-*-*-iso10646-*
+XTerm*font5:		-xos4-terminus-medium-r-*-*-24-*-*-*-*-*-iso10646-*
+XTerm*font6:		-xos4-terminus-medium-r-*-*-32-*-*-*-*-*-iso10646-*
+
+XTerm*VT100.font1:	  -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso10646-1
+XTerm*VT100.font2:	  -xos4-terminus-medium-r-normal-*-14-120-72-72-c-60-iso10646-1
+XTerm*VT100.font3:	  -xos4-terminus-medium-r-normal-*-16-120-72-72-c-60-iso10646-1
+XTerm*VT100.font4:	  -xos4-terminus-medium-r-normal-*-20-120-72-72-c-60-iso10646-1
+XTerm*VT100.font5:	  -xos4-terminus-medium-r-normal-*-24-120-72-72-c-60-iso10646-1
+XTerm*VT100.font6:	  -xos4-terminus-medium-r-normal-*-32-120-72-72-c-60-iso10646-1
+
+XTerm*VT100.scrollBar:	false
+
+XTerm*mainMenu*font:	-xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*fontMenu*font:	-xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*vtMenu*font:	-xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*mainMenu*geometry:     300x480
+XTerm*vtMenu*geometry:       300x480
+XTerm*fontMenu*geometry:     300x400
+XTerm*borderWidth:           1
+
+Aterm*transparent:	     true
+Aterm*shading:		     15
+Aterm*scrollBar:	     false
+Aterm*font:		     -xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
+
+urxvt*transparent: true
+urxvt*depth: 32
+urxvt*foreground:  #02e8ff
+urxvt*background:  #0b1d07
+urxvt*shading:	   25
+urxvt*termName:    rxvt
+urxvt*font:	   -xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
+urxvt*scrollBar:   false
+urxvt*geometry:	   120x20
+
+! Which characters are considered to build a _single_ word
+! when doing double-click-Cut&Paste?
+!
+! Every ascii-value gets mapped to another (arbitrary), already 'valid'
+! character, with a colon.
+! Here ascii 48 ("0") is the reference. See the manpage.
+!
+!I don_t want these to separate words:   ! # $ % + - . / @ ~
+XTerm.VT100.charClass: 33:48,35-37:48,43:48,45-47:48,64:48,126:48
+!
+!Wether this works also with _wrapped_ selections, depends on
+!  don_t be confused:  MIT X11R5/6 and Suns openwin xterm
+!    will exclude the newline as well, but the logic for highlightening
+!    a selection was not updated.  XFree86 xterm and rxvt in contrast
+!    also provide intuitive highlightening.
+!  It only works if xterm is wrapping the line itself
+!    (not always really obvious for the user, though).
+!  Among the different vi_s, vim actually supports this with a
+!    clever and little hackish trick (see screen.c):
+!
+!    But before: vim inspects the _name_ of the value of TERM.
+!    This must be similar to "xterm" (like "xterm-xfree86", which is
+!    better than "xterm-color", btw, see his FAQ).
+!    The terminfo entry _itself_ doesn t matter here
+!    (e.g.: xterm and vs100 are the same entry, but with
+!     the latter it doesn t work).
+!
+!    If vim has to wrap a word, it appends a space at the first part,
+!    this space will be wrapped by xterm.  Going on with writing, vim
+!    in turn then positions the cursor again at the _beginning_ of this
+!    next line. Thus, the space is not visible.  But xterm now believes
+!    that the two lines are actually a single one--as xterm _has_ done
+!    some wrapping also...
+
+Xpdf*geometry:		1000x900+0+0
+Xpdf*initialZoom:	width
+Xpdf*continuousView:	true
+
+Emacs.geometry:120x35+0+0
+emacs.font:    -xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+
+Xft.antialias*:True
+
+! xscreensaver
+!newLoginCommand (class NewLoginCommand)
+! If set, this is the shell command that is run when the "New Login" button is pressed
+! on the unlock dialog box, in order to create a new desktop session without logging
+! out the user who has locked the screen.
+! Typically this will be some variant of gdmflexiserver(1) or kdmctl(1).
+xscreensaver*newLoginCommand:	setxkbmap -layout us
+
