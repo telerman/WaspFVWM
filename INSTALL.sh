@@ -19,5 +19,5 @@ make_backup ${HOME}/.conkyrc
 mv -v ./.Xresources ${HOME}/.Xresources
 mv -v ./.emacs ${HOME}/.emacs
 mv -v ./.conkyrc ${HOME}/.conkyrc
-
+ln -s `pwd` ${HOME}/.fvwm
 
