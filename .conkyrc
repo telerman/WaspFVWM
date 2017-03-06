@@ -68,8 +68,6 @@ conky.config = {
 };
 
 conky.text = [[
-Power ${hr}
-${font Terminus}${execi 30 acpi -ab}${font}
 ${sysname}${hr}
 ${alignr}$kernel
 CPU ${hr}
