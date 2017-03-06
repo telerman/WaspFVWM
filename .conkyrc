@@ -70,14 +70,6 @@ conky.config = {
 conky.text = [[
 ${sysname}${hr}
 ${alignr}$kernel
-CPU ${hr}
-Core 1:  ${cpu cpu1}% $alignr ${freq_g (1)} GHz / ${exec sensors | grep "Core 0" | cut --bytes=14-21}
-${alignr}${cpubar cpu1 10,300}
-Core 2:  ${cpu cpu2}% $alignr ${freq_g (2)} GHz / ${exec sensors | grep "Core 1" | cut --bytes=14-21}
-${alignr}${cpubar cpu2 10,300}
-Memory ${hr}
-$mem/$memmax - $memperc%
-${alignr}${membar 10,300 02e8ff 02e8ff}
 ${font Terminus:size=10}${execi 3600 cal}${font}
 ${time %A} - ${time %d %B %Y}
 ${font Terminus:size=24}${time %H}:${time %M}:${time %S}
