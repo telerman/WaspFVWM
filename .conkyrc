@@ -68,6 +68,7 @@ conky.config = {
 };
 
 conky.text = [[
+${font Terminus:size=10}
 ${sysname}${hr}
 ${alignr}$kernel
 ${font Terminus:size=10}${execi 3600 cal}${font}
