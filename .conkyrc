@@ -71,7 +71,7 @@ conky.text = [[
 ${font Terminus:size=10}
 ${sysname}${hr}
 ${alignr}$kernel
-${font Terminus:size=10}${execi 3600 cal}${font}
+${font Terminus:size=10}${execi 3600 cal}
 ${time %A} - ${time %d %B %Y}
 ${font Terminus:size=24}${time %H}:${time %M}:${time %S}
 
