@@ -21,3 +21,4 @@ cp -v ./.emacs ${HOME}/.emacs
 cp -v ./.conkyrc ${HOME}/.conkyrc
 ln -s `pwd` ${HOME}/.fvwm
 
+chmod u+x ./scripts/*
