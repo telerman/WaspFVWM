@@ -43,3 +43,6 @@ if [ ! -d ${HOME}/.fonts ]
 then
     mkdir ${HOME}/.fonts
 fi
+
+wget https://fontlibrary.org/assets/downloads/lcd/0bbb50971deb300331139c65b16b37c8/lcd.zip  -O ${HOME}/.fonts/lcd.zip
+unzip ${HOME}/.fonts/lcd.zip -d ${HOME}/.fonts/

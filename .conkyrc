@@ -71,8 +71,9 @@ conky.text = [[
 ${font Terminus:size=10}
 ${sysname}${hr}
 ${alignr}$kernel
+${execi 120 setxkbmap -query | grep layout | tr -d ' ' | cut -f2 -d':'}
 ${font Terminus:size=10}${execi 3600 cal}
 ${time %A} - ${time %d %B %Y}
-${font Terminus:size=24}${time %H}:${time %M}:${time %S}
+${font LCD:size=26}${time %H}:${time %M}:${time %S}
 
 ]];
