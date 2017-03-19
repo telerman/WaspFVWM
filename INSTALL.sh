@@ -37,5 +37,9 @@ install_component ${BASEDIR}/.conkyrc ${HOME}/.conkyrc
 install_component ${BASEDIR}/scripts ${HOME}/.fvwm/
 install_component ${BASEDIR}/config ${HOME}/.fvwm/
 
-
 chmod u+x ${HOME}/.fvwm/scripts/*
+
+if [ ! -d ${HOME}/.fonts ]
+then
+    mkdir ${HOME}/.fonts
+fi
