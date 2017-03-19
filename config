@@ -14,7 +14,7 @@ ImagePath $HOME/.fvwm/backgrounds/:$HOME/.fvwm/icons
 WindowFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
 IconFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
 DefaultFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
-MenuStyle * Font "xft:Conthrax:Medium:size=12:encoding=iso10646-1:antialias=true"
+MenuStyle * Font "xft:Xolonium:Medium:size=14:encoding=iso10646-1:antialias=true"
 
 
 Style FvwmWinList	WindowListSkip
