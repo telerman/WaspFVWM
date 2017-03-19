@@ -44,5 +44,10 @@ then
     mkdir ${HOME}/.fonts
 fi
 
-wget https://fontlibrary.org/assets/downloads/lcd/0bbb50971deb300331139c65b16b37c8/lcd.zip  -O ${HOME}/.fonts/lcd.zip
-unzip ${HOME}/.fonts/lcd.zip -d ${HOME}/.fonts/
+wget https://fontlibrary.org/assets/downloads/lcd/0bbb50971deb300331139c65b16b37c8/lcd.zip -O ${HOME}/.fonts/lcd.zip
+wget https://fontlibrary.org/assets/downloads/xolonium/e00c124f3e1b130e5ec2a7eee2f4f1b8/xolonium.zip -O ${HOME}/.fonts/xolonium.zip
+
+for i in ${HOME}/.fonts/*.zip
+do
+    unzip "$i" -d ${HOME}/.fonts/
+done
