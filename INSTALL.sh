@@ -1,15 +1,31 @@
 #!/bin/sh
 BASEDIR=`dirname $(readlink -f $0)`
 BACKUPDIR=env_backup_`date +%Y%m%d%H%M%S`
+E_NODEST=95
+
+if [ -z "$1" ]
+then
+    DESTINATION=${HOME}
+else
+    DESTINATION=$1
+fi
 
 echo $BACKUPDIR
-mkdir ${HOME}/${BACKUPDIR}
+echo $DESTINATION
+
+if [ ! -d $DESTINATION ]
+then
+    echo "Destination directory $DESTINATION not found"
+    exit $E_NODEST
+fi
+
+mkdir ${DESTINATION}/${BACKUPDIR}
 
 make_backup ()
 {
     if [ -e "$1" ]
     then
-	mv -v "$1" ${HOME}/${BACKUPDIR}/
+	mv -v "$1" ${DESTINATION}/${BACKUPDIR}/
     fi
 }
 
@@ -22,32 +38,32 @@ install_component ()
 
 }
 
-make_backup ${HOME}/.Xresources
-make_backup ${HOME}/.emacs
-make_backup ${HOME}/.fvwm
-make_backup ${HOME}/.conkyrc
+make_backup ${DESTINATION}/.Xresources
+make_backup ${DESTINATION}/.emacs
+make_backup ${DESTINATION}/.fvwm
+make_backup ${DESTINATION}/.conkyrc
 
-mkdir ${HOME}/.fvwm
-mkdir ${HOME}/.fvwm/icons
-mkdir ${HOME}/.fvwm/backgrounds
+mkdir ${DESTINATION}/.fvwm
+mkdir ${DESTINATION}/.fvwm/icons
+mkdir ${DESTINATION}/.fvwm/backgrounds
 
-install_component ${BASEDIR}/.Xresources ${HOME}/.Xresources
-install_component ${BASEDIR}/.emacs ${HOME}/.emacs
-install_component ${BASEDIR}/.conkyrc ${HOME}/.conkyrc
-install_component ${BASEDIR}/scripts ${HOME}/.fvwm/
-install_component ${BASEDIR}/config ${HOME}/.fvwm/
+install_component ${BASEDIR}/.Xresources ${DESTINATION}/.Xresources
+install_component ${BASEDIR}/.emacs ${DESTINATION}/.emacs
+install_component ${BASEDIR}/.conkyrc ${DESTINATION}/.conkyrc
+install_component ${BASEDIR}/scripts ${DESTINATION}/.fvwm/
+install_component ${BASEDIR}/config ${DESTINATION}/.fvwm/
 
-chmod u+x ${HOME}/.fvwm/scripts/*
+chmod u+x ${DESTINATION}/.fvwm/scripts/*
 
-if [ ! -d ${HOME}/.fonts ]
+if [ ! -d ${DESTINATION}/.fonts ]
 then
-    mkdir ${HOME}/.fonts
+    mkdir ${DESTINATION}/.fonts
 fi
 
-wget https://fontlibrary.org/assets/downloads/lcd/0bbb50971deb300331139c65b16b37c8/lcd.zip -O ${HOME}/.fonts/lcd.zip
-wget https://fontlibrary.org/assets/downloads/xolonium/e00c124f3e1b130e5ec2a7eee2f4f1b8/xolonium.zip -O ${HOME}/.fonts/xolonium.zip
+wget https://fontlibrary.org/assets/downloads/lcd/0bbb50971deb300331139c65b16b37c8/lcd.zip -O ${DESTINATION}/.fonts/lcd.zip
+wget https://fontlibrary.org/assets/downloads/xolonium/e00c124f3e1b130e5ec2a7eee2f4f1b8/xolonium.zip -O ${DESTINATION}/.fonts/xolonium.zip
 
-for i in ${HOME}/.fonts/*.zip
+for i in ${DESTINATION}/.fonts/*.zip
 do
-    unzip "$i" -d ${HOME}/.fonts/
+    unzip "$i" -d ${DESTINATION}/.fonts/
 done
