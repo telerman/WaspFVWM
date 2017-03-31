@@ -224,6 +224,7 @@ AddToMenu RootMenu "WaspFVWM"
 + "xterm"		exec xterm
 + "emacs"		exec emacs
 + "idle"		exec idle
++ "screenshot"  	exec  wid=xwininfo | grep "Window id" | cut -f4 -d" "; dts=date +%Y%m%d%H%M%S; import -window "$wid" screenshot_${dts}.jpg
 + "applications"	Popup Applications
 + "preferences"		Popup Preferences
 + ""			Nop
