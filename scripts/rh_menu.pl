@@ -13,7 +13,7 @@ my $remote_xterm      = "xterm -bg \\#000000 -fg \\#00ff00 -fn $remote_term_font
 my $driver_status     = "xterm -geometry 75x30-0+0 -bg grey10 -fg \\#ff7f00 -fn $service_term_font";
 my $link_status       = "xterm -geometry 75x10-0+0 -bg grey10 -fg \\#ff7f00 -fn $service_term_font";
 my $lanconf_xterm     = "xterm -fn $remote_term_font -geometry 82x25";
-my $service_term_cmd  = "xterm -fn 7x15 -bg \\#1f0000 -fg \\#ff7f00";
+my $service_term_cmd  = "xterm -geometry 75x10-0+0 -fn 7x15 -bg \\#1f0000 -fg \\#ff7f00";
 
 print "\nDestroyMenu RemoteHostsMenu";
 print "\nAddToMenu RemoteHostsMenu";
@@ -43,7 +43,6 @@ print "\n";
 foreach $menu_item (keys %hosts_menu){
     my $host = $hosts_menu{$menu_item};
     next if (!$host);
-    next if (!($host =~ m/^inx/));
     print "\n\nDestroyMenu \"$menu_item\"";
     print "\nAddToMenu \"$menu_item\"";
     print "\n + \"SSH\"\t   exec ssh -X -n -f $host \'export DISPLAY\=$ENV{HOSTNAME}$ENV{DISPLAY} \&\& $remote_xterm -T $host\'";
