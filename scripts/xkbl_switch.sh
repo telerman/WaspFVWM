@@ -1,13 +1,14 @@
 #!/bin/bash
 # Script should switch keyboard layout any run between English, Russian and Hebrew layouts
-if [ `setxkbmap -query | grep layout|cut -f2 -d":"` == "us" ]
+export CURRENT_L=`setxkbmap -query | grep layout | tr -d " "|cut -f2 -d":"`
+if [ $CURRENT_L == "us" ]
 then
     setxkbmap -layout il
-elif [ `setxkbmap -query | grep layout|cut -f2 -d":"` == "il" ]
+elif [ $CURRENT_L == "il" ]
 then
     setxkbmap -layout ru -variant phonetic
-elif [ `setxkbmap -query | grep layout|cut -f2 -d":"` == "ru" ]
+elif [ $CURRENT_L == "ru" ]
 then
     setxkbmap -layout us
 fi
-echo `setxkbmap -query | grep layout|cut -f2 -d":"`
+echo `setxkbmap -query | grep layout | tr -d " " | cut -f2 -d":"`
