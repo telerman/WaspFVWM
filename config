@@ -173,6 +173,11 @@ AddToFunc MakeBGMenu
 + I AddToMenu BGMenu
 + I PipeRead "perl ${HOME}/.fvwm/scripts/bg_menu.pl"
 
+AddToFunc MakeRHMenu
++ I DestroyMenu recreate RHMenu
++ I AddToMenu RHMenu
++ I PipeRead "perl ${HOME}/.fvwm/scripts/rh_menu.pl"
+
 AddToMenu WindowMenu
 + "MoveToPage"		Popup PagerNavigation
 + "ID"			Module FvwmIdent
@@ -224,6 +229,8 @@ AddToMenu FVWM
 
 AddToMenu RootMenu "WaspFVWM"
 + DynamicPopupAction Function MakeBGMenu
++ DynamicPopupAction Function MakeRHMenu
++ "remote hosts"     PopUp RHMenu
 + "xterm"		exec xterm
 + "emacs"		exec emacs
 + "idle"		exec idle
