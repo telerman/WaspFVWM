@@ -15,8 +15,8 @@ my $link_status       = "xterm -geometry 75x10-0+0 -bg grey10 -fg \\#ff7f00 -fn 
 my $lanconf_xterm     = "xterm -fn $remote_term_font -geometry 82x25";
 my $service_term_cmd  = "xterm -geometry 75x10-0+0 -fn 7x15 -bg \\#1f0000 -fg \\#ff7f00";
 
-print "\nDestroyMenu RemoteHostsMenu";
-print "\nAddToMenu RemoteHostsMenu";
+print "\nDestroyMenu RHMenu";
+print "\nAddToMenu RHMenu";
 print "\n + \"Edit List\"\texec emacs $ENV{HOME}/.fvwm/remote_hosts";
 
 my %hosts_menu =undef;
