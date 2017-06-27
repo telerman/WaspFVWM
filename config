@@ -21,6 +21,7 @@ Style FvwmWinList	WindowListSkip
 Style FvwmPager		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
 Style FvwmTaskBar	!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
 Style radio		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style Conky*		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
 
 ClickTime        250
 OpaqueMoveSize   -1
@@ -70,6 +71,7 @@ ButtonStyle All Active -- flat
 ButtonStyle All Inactive -- flat
 
 Key Super_L               A A exec \$[HOME]/.fvwm/scripts/xkbl_switch.sh
+Key XF86Display		  A A exec \$[HOME]/.fvwm/scripts/disp_sw.sh
 Key XF86MonBrightnessDown A A exec xbacklight -dec 10
 Key XF86MonBrightnessUp   A A exec xbacklight -inc 10
 Key XF86AudioMute         A A exec /usr/bin/amixer set Master toggle
@@ -120,6 +122,7 @@ AddToFunc StartFunction
 + I Exec killall -9 conky; sleep 2 && conky
 + I Exec xrdb load ~/.Xresources
 + I Exec xscreensaver
++ I Module FvwmCommandS
 + I Module FvwmPager
 
 AddToFunc ExitFunction
