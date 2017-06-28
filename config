@@ -11,9 +11,9 @@ Colorset 13 RootTransparent, Tint black 70, bgTint black 50, fg #aaaaaa
 
 ImagePath $HOME/.fvwm/backgrounds/:$HOME/.fvwm/icons
 
-WindowFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
-IconFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
-DefaultFont	 "xft:Noto Sans:Medium:size=10:encoding=iso10646-1:antialias=true"
+WindowFont	 "xft:Xolonium:Medium:size=10:encoding=iso10646-1:antialias=true"
+IconFont	 "xft:Xolonium:Medium:size=10:encoding=iso10646-1:antialias=true"
+DefaultFont	 "xft:Xolonium:Medium:size=10:encoding=iso10646-1:antialias=true"
 MenuStyle * Font "xft:Xolonium:Medium:size=14:encoding=iso10646-1:antialias=true"
 
 
@@ -59,16 +59,45 @@ EdgeResistance -1
 *FvwmPager: BalloonYOffset      +20
 *FvwmPager: BalloonBorderWidth  1
 
-TitleStyle Height 22
-TitleStyle LeftJustified
+
+#######
+# Window Decor
+#
+# Buttons Locations: [1 3 5 7 9========TTTTT========0 8 6 4 2]
+#
+#   1 - WindowOps Menu
+#   2 - Close
+#   3 - Window Shade Up
+#   4 - Maximize
+#   5 - Window Shade Left
+#   6 - Iconify
+#   8 - Window Shade Right
+###########
 TitleStyle Active  Colorset 12
 TitleStyle Inactive Colorset 13
-TitleStyle -- flat
-
+TitleStyle Centered Height 20 -- Flat
 BorderStyle Inactive Colorset 8 -- Noinset
 BorderStyle Active Colorset 9
-ButtonStyle All Active -- flat
-ButtonStyle All Inactive -- flat
+
+ButtonStyle All Active --Flat
+
+AddButtonStyle 1 Vector 5 44x30@3 74x30@3 74x60@3 44x60@3 44x30@3
+
+AddButtonStyle 2 17 20x20@3 30x20@3 50x40@3 70x20@3 80x20@3 80x30@3 60x50@3 \
+                 80x70@3 80x80@3 70x80@3 50x60@3 30x80@3 20x80@3 20x70@3 \
+                 40x50@3 20x30@3 20x20@3
+
+AddButtonStyle 4 13 60x20@3 60x40@3 80x40@3 80x60@3 60x60@3 60x80@3 40x80@3 \
+                 40x60@3 20x60@3 20x40@3 40x40@3 40x20@3 60x20@3
+
+AddButtonStyle 3 Vector 5 20x20@3 80x20@3 80x30@3 20x30@3 20x20@3
+AddButtonStyle 5 Vector 5 20x20@3 20x80@3 30x80@3 30x20@3 20x20@3
+AddButtonStyle 6 Vector 5 35x60@3 65x60@3 65x50@3 35x50@3 35x60@3
+AddButtonStyle 8 Vector 5 80x20@3 80x80@3 70x80@3 70x20@3 80x20@3
+
+ButtonStyle 1 - MwmDecorMenu
+ButtonStyle 4 - MwmDecorMax
+ButtonStyle 6 - MwmDecorMin
 
 Key Super_L               A A exec \$[HOME]/.fvwm/scripts/xkbl_switch.sh
 Key XF86Display		  A A exec \$[HOME]/.fvwm/scripts/disp_sw.sh
@@ -92,16 +121,12 @@ Key Left  A MC Scroll -100 0 # Ctrl+Alt+Left  - Go one page Left
 Key Up    A MC Scroll  0 -100 # Ctrl+Alt+Right - Go one page Right                                                                    
 Key Down  A MC Scroll  0 100 # Ctrl+Alt+Left  - Go one page Left
 
-Mouse 0 4	A	RaiseMaximize
-Mouse 0 2	A	Close
-Mouse 0 6	A	Thumbnail
-Mouse 0 6	A	Iconify
+Mouse 1 R A Menu RootMenu Nop
+Mouse 1 S A Function MoveOrRaise
+Mouse 1 F A Resize
+Mouse 1 I A Function IconFunc
+Mouse 1 T A Move
 
-Mouse 1 R	A	Menu RootMenu Nop
-Mouse 1 S	A	Function MoveOrRaise
-Mouse 1 F	A	Resize
-Mouse 1 I	A	Function IconFunc
-Mouse 1 T 	A 	Move
 
 Mouse 2 R	A	Refresh
 Mouse 2	FST	A	Menu WindowMenu Nop
@@ -115,6 +140,17 @@ Mouse 3 _ A WindowShade S     # mouse 1 + Shift on bottom border
 Mouse 3	I	A	Move
 Mouse 3 R	A	WindowList
 Mouse 3 T	A	Lower
+
+# Window Buttons: [1 3 5 7 9 TTTTT 0 8 6 4 2]
+Mouse 1 1 N Menu WindowMenu 
+Mouse 1 2 A Close
+Mouse 1 3 N WindowShade
+Mouse 1 4 A Maximize 100 100
+Mouse 2 4 A Maximize 0 100
+Mouse 3 4 A Maximize 100 0
+Mouse 1 6 A Iconify
+Mouse 1 5 A WindowShade West
+Mouse 1 8 A WindowShade E
 
 DestroyFunc StartFunction
 AddToFunc StartFunction
@@ -250,12 +286,6 @@ Style *	Icon konsole.png, IconOverride, EWMHMiniIconOverride
 Style * HilightColorset 12
 Style * Colorset 4
 Style * WindowShadeShrinks, WindowShadeSteps 100, WindowShadeLazy
-
-AddToDecor Default
- + ButtonStyle 1 Vector 4 50x25@1 85x75@0 15x75@0 50x25@1
- + ButtonStyle 1 Colorset 7
-
-Mouse 0 1 N WindowShade
 
 AddToFunc RestartFunction I Module FvwmBacker
 AddToFunc InitFunction I Module FvwmBacker
