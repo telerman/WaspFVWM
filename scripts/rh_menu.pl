@@ -17,11 +17,12 @@ my $service_term_cmd  = "xterm -geometry 75x10-0+0 -fn 7x15 -bg \\#1f0000 -fg \\
 
 print "\nDestroyMenu RHMenu";
 print "\nAddToMenu RHMenu";
-print "\n + \"Edit List\"\texec emacs $ENV{HOME}/.fvwm/remote_hosts";
+print "\n + \"Edit List\"\texec emacs --no-desktop --no-splash $ENV{HOME}/.fvwm/remote_hosts";
 
 my %hosts_menu =undef;
 
 open (REMOTE_HOSTS,"<$ENV{HOME}/.fvwm/remote_hosts");
+
 while (<REMOTE_HOSTS>){
     chomp;
     next if (m/^\#/);
@@ -29,24 +30,30 @@ while (<REMOTE_HOSTS>){
 	print "\n + \"\"\t\t\tNop\n";
 	next;
     }
-    my @line_split=split(/\:/,$_);
-    $hosts_menu{$line_split[1]} = $line_split[0];
-    my $host      = $line_split[0];
-    my $menu_item = $line_split[1];
-    next if (!$host);
-    print "\n + \"$menu_item\"\tPopup \"$menu_item\"";
+    my @mi=split(/\:/,$_);
+    print "\n + \"".$mi[0]."\"\tPopup \"".$mi[0]."\"";
+    $hosts_menu{$mi[0]} = SubMenu($mi[1],$mi[0],$mi[2]);
 }
 close REMOTE_HOSTS;
 
+foreach $line (keys %hosts_menu) {
+    print $hosts_menu{$line};
+}
+
 print "\n";
 
-foreach $menu_item (keys %hosts_menu){
-    my $host = $hosts_menu{$menu_item};
-    next if (!$host);
-    print "\n\nDestroyMenu \"$menu_item\"";
-    print "\nAddToMenu \"$menu_item\"";
-    print "\n + \"SSH\"\t   exec ssh -X -n -f $host \'export DISPLAY\=$ENV{HOSTNAME}$ENV{DISPLAY} \&\& $remote_xterm -T $host\'";
-    print "\n + \"ping\"\t\t      exec $service_term_cmd -T \'ping $host\' -e ping $host";
+sub SubMenu() {
+    my $menu = $_[0];
+    my $host = $_[1];
+    my $user = $_[2];
+    my $retval= "
+\nDestroyMenu\t\"$menu\"
+AddToMenu\t\"$menu\"
+ + \"SSH\"\texec $remote_xterm -T $host -e 'ssh $host'";
+    if ($user) {
+    $retval = $retval."\n + \"SSH $user\"\texec $remote_xterm -T $host -e 'ssh $host -l $user'";
+    }
+    return $retval;
 }
 
 exit(0);
