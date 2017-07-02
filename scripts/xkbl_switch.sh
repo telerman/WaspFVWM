@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script should switch keyboard layout any run between English, Russian and Hebrew layouts
-export CURRENT_L=`setxkbmap -query | grep layout | tr -d " "|cut -f2 -d":"`
+export CURRENT_L=`setxkbmap -query | grep layout | tr -d " "|cut -f2 -d":"|cut -f1 -d","`
 if [ $CURRENT_L == "us" ]
 then
     setxkbmap -layout il
