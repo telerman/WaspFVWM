@@ -31,7 +31,7 @@ while (<REMOTE_HOSTS>){
 	next;
     }
     my @mi=split(/\:/,$_);
-    print "\n + \"".$mi[0]."\"\tPopup \"".$mi[0]."\"";
+    print "\n + \"".$mi[1]."\"\tPopup \"".$mi[1]."\"";
     $hosts_menu{$mi[0]} = SubMenu($mi[1],$mi[0],$mi[2]);
 }
 close REMOTE_HOSTS;
