@@ -14,14 +14,7 @@ ImagePath $HOME/.fvwm/backgrounds/:$HOME/.fvwm/icons
 WindowFont	 "xft:Xolonium:Medium:size=10:encoding=iso10646-1:antialias=true"
 IconFont	 "xft:Xolonium:Medium:size=10:encoding=iso10646-1:antialias=true"
 DefaultFont	 "xft:Xolonium:Medium:size=10:encoding=iso10646-1:antialias=true"
-MenuStyle * Font "xft:Xolonium:Medium:size=14:encoding=iso10646-1:antialias=true"
-
-
-Style FvwmWinList	WindowListSkip
-Style FvwmPager		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
-Style FvwmTaskBar	!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
-Style radio		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
-Style Conky*		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+MenuStyle * Font "xft:Liberation:Medium:size=16:encoding=iso10646-1:antialias=true"
 
 ClickTime        250
 OpaqueMoveSize   -1
@@ -76,8 +69,7 @@ EdgeResistance -1
 TitleStyle Active  Colorset 12
 TitleStyle Inactive Colorset 13
 TitleStyle Centered Height 20 -- Flat
-BorderStyle Inactive Colorset 8 -- Noinset
-BorderStyle Active Colorset 9
+BorderStyle Colorset 3
 
 ButtonStyle All Active --Flat
 
@@ -92,7 +84,7 @@ AddButtonStyle 4 13 60x20@3 60x40@3 80x40@3 80x60@3 60x60@3 60x80@3 40x80@3 \
 
 AddButtonStyle 3 Vector 5 20x20@3 80x20@3 80x30@3 20x30@3 20x20@3
 AddButtonStyle 5 Vector 5 20x20@3 20x80@3 30x80@3 30x20@3 20x20@3
-AddButtonStyle 6 Vector 5 35x60@3 65x60@3 65x50@3 35x50@3 35x60@3
+AddButtonStyle 6 Vector 5 35x45@3 65x45@3 65x50@3 35x50@3 35x60@3
 AddButtonStyle 8 Vector 5 80x20@3 80x80@3 70x80@3 70x20@3 80x20@3
 
 ButtonStyle 1 - MwmDecorMenu
@@ -280,14 +272,14 @@ AddToMenu RootMenu "XDG Menus" Popup FvwmMenu
 PipeRead 'fvwm-menu-desktop --enable-mini-icons --theme Mist'
 
 Style * DecorateTransient
-Style * CascadePlacement
+Style * ManualPlacement
 Style * TitleFormat %n (%t)
 Style *	Icon konsole.png, IconOverride, EWMHMiniIconOverride
 Style * HilightColorset 12
 Style * Colorset 4
 Style * WindowShadeShrinks, WindowShadeSteps 100, WindowShadeLazy
-
-AddToFunc RestartFunction I Module FvwmBacker
-AddToFunc InitFunction I Module FvwmBacker
-
-BorderStyle InActive -- NoInset
+Style FvwmWinList	WindowListSkip
+Style FvwmPager		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style FvwmTaskBar	!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style radio		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style Conky*		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
