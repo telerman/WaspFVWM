@@ -1,6 +1,6 @@
 XTerm*geometry:		160x25
-XTerm*background:	#000900
-XTerm*foreground:	#8ade02
+XTerm*background:	#000010
+XTerm*foreground:	#02e8ff
 
 XTerm*font:		-xos4-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 XTerm*font1:		-xos4-terminus-medium-r-*-*-10-*-*-*-*-*-iso10646-*
