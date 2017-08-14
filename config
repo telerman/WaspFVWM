@@ -119,7 +119,6 @@ Mouse 1 F A Resize
 Mouse 1 I A Function IconFunc
 Mouse 1 T A Move
 
-
 Mouse 2 R	A	Refresh
 Mouse 2	FST	A	Menu WindowMenu Nop
 Mouse 2 I	A	Menu WindowMenu Nop
@@ -147,16 +146,13 @@ Mouse 1 8 A WindowShade E
 DestroyFunc StartFunction
 AddToFunc StartFunction
 + I Exec xsetroot -fg \#002222 -bg \#00010e -mod 16 20
-+ I Exec killall -9 conky; sleep 2 && conky
 + I Exec xrdb load ~/.Xresources
-+ I Exec xscreensaver
 + I Module FvwmCommandS
 + I Module FvwmPager
 
+DestroyFunc ExitFunction
 AddToFunc ExitFunction
-+ I Exec killall -9 FvwmPager
-+ I Exec killall -9 xscreensaver
-+ I Exec killall -9 conky
++ I Nop
 
 AddToFunc MoveNoRaise
 + M Move
@@ -246,27 +242,26 @@ AddToMenu Module-Popup	"FvwmModules" Title
 + "Form - QuitVerify"	Module FvwmForm QuitVerify
 
 AddToMenu FVWM
-+ "restart"		Restart
-+ "lock screen"		exec xscreensaver-command -lock
- + "background" 	Popup BGMenu
-+ "winlist"		Module  FvwmWinList
-+ "refresh"		Refresh
-+ "modules"		PopUp Module-Popup
-+ ""			Nop
-+ "quit"		Quit
++ "restart"	Restart
++ "lock screen"	exec xscreensaver-command -lock
++ "winlist"	Module  FvwmWinList
++ "refresh"	Refresh
++ "modules"	PopUp Module-Popup
++ ""		Nop
++ "quit"	Quit
 
 AddToMenu RootMenu "WaspFVWM"
-+ DynamicPopupAction Function MakeBGMenu
 + DynamicPopupAction Function MakeRHMenu
-+ "remote hosts"     PopUp RHMenu
-+ "xterm"		exec xterm
-+ "emacs"		exec emacs
-+ "idle"		exec idle
-+ "screenshot"  	exec  wid=xwininfo | grep "Window id" | cut -f4 -d" "; dts=date +%Y%m%d%H%M%S; import -window "$wid" screenshot_${dts}.jpg
-+ "applications"	Popup Applications
-+ "preferences"		Popup Preferences
-+ ""			Nop
-+ "fvwm"		Popup FVWM
++ "remote hosts" PopUp RHMenu
++ "vpn"	  	 exec xterm -geometry 75x10+0+0 -fn 7x15 -bg \#1f0000 -T vpncon -e vpncon
++ "xterm"	 exec xterm
++ "emacs"	 exec emacs
++ "IntelliJ"	 exec idea.sh
++ "screenshot"   exec  wid=xwininfo | grep "Window id" | cut -f4 -d" "; dts=`date +%Y%m%d%H%M%S`; import -window "$wid" screenshot_${dts}.jpg
++ "applications" Popup Applications
++ "preferences"	 Popup Preferences
++ ""		 Nop
++ "fvwm"	 Popup FVWM
 
 AddToMenu RootMenu "XDG Menus" Popup FvwmMenu
 PipeRead 'fvwm-menu-desktop --enable-mini-icons --theme Mist'
@@ -281,5 +276,5 @@ Style * WindowShadeShrinks, WindowShadeSteps 100, WindowShadeLazy
 Style FvwmWinList	WindowListSkip
 Style FvwmPager		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
 Style FvwmTaskBar	!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
-Style radio		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
-Style Conky*		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style vpncon		!Title, Sticky, WindowListSkip, !Handles, BorderWidth 0
+Style Conky*		!Title, Sticky, MinOverlapPlacement, WindowListSkip, !Handles, BorderWidth 0
